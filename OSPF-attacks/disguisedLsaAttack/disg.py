@@ -1,37 +1,5 @@
 #! /usr/bin/env python
 
-"""
-This script is used to attack an OSPF router area with a disguised Router LSA message.
-There are 4 arguments to pass to the script, explained in detail below.
-### Victim router
-This router receives a "trigger" package; this is used to trigger the fightback mechanism,
-while sending the disguised package at the same time. In this way, the generated fightback
-package arrives to the other router too late, and it is discarded because seen as "too old",
-when compared to the disguised one. On the other hand, the victim router does not verify if
-the fightback package is accepted or not and hence it does not send any new LSA, until
-the current one expires (normally, on Cisco device, LSAs expire after 30 minutes).
-### Neighbor router
-First of all, in this case the "neighbor" is refered to the neighbor defined inside the
-victim's router configuration (this is one of the neighbor of the victim router).
-This router is the target of the disguised LSA package. In theory, it could be a multicast
-address, but in reality this is not the case: in fact, if the neighbor router receives
-both the trigger packet and the disguised packet (because both are sent to the multicast
-address), the disguised one is discarted, due to the "hold timer". If you try, the router
-receives:
-- the trigger packet
-- the disguised packet
-- the fightback packet
-The first is accepted, while the second and the third packets are discarted. Then, the neighbor
-router sends out an LSAcknowledge to the victim router, with an ACK for the first packet. When
-the victim router receives it, it sends out, once again, the fightback packet (because the LSAck
-refers to the trigger packet, which has a sequence number smaller, by one, if compared to the fightback
-sequence number), overwriting anything on the whole OSPF area.
-### Interface
-This is the network interface to use for sniffing and for sending both the trigger and the disguised
-packets.
-### Sample command
-./ospf-disguised-lsa.py -v 172.16.22.5 -n 172.16.22.2 -i eth2
-"""
 
 import sys
 import argparse

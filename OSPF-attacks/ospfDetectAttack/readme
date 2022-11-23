@@ -1,0 +1,13 @@
+Written by - Anoop Kumar Kushwaha 
+
+This script is can be used to detect the following attacks in the OSPF: 
+    1. MaxSequence attacks
+    2. MaxAge attacks
+    3. Disguised LSA attacks
+
+How to use: 
+   Sudo python3 detect.py -list of the veths- 
+    Example : Sudo python3 detect.py veth3.1.1 veth3.2.4
+
+
+Follow this link see the attack in working: https://youtu.be/T0APMTGkcJY
