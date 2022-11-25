@@ -16,7 +16,7 @@ Orchestration
     3 : In our last step, we flood(multicast address 224.0.0.5) the crafted packet on behalf of the victim with gap of 1 sec. The time delay must be followed otherwise the neighbors won’t install the packet sent by us as describe by RFC in Architectural Constant!
     
 
-![alt text](https://github.com/a1819644//MCS-Research/main/seq.png?raw=true)
+![alt text](https://github.com/a1819644/MCS-Research/blob/main/OSPF-attacks/seq%2B%2B_attack/seq.png)
 
 
 
