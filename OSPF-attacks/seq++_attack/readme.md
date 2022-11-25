@@ -1,4 +1,4 @@
-writter by Anoop Kumar Kushwaha
+## writter by Anoop Kumar Kushwaha
 
 
 
@@ -13,8 +13,8 @@ to installed("Note that this excludes changes in LS Sequence Number and LS Check
 
 ## Orchestration
 ```
-    1 : We start by intercepting the LSA packet sent by the victim router(n5),where we were sitting on the imper- sonated router n1 fig.2.
-    2 : We craft the forged packet by changing the link state metric of the link between the n5 and n6 router( fig.2) to 30 from 10 and increase the sequence number by 1.
+    1 : We start by intercepting the LSA packet sent by the victim router(n5),where we were sitting on the imper- sonated router n1 fig.
+    2 : We craft the forged packet by changing the link state metric of the link between the n5 and n6 router( fig) to 30 from 10 and increase the sequence number by 1.
     3 : In our last step, we flood(multicast address 224.0.0.5) the crafted packet on behalf of the victim with gap of 1 sec. The time delay must be followed otherwise the neighbors won’t install the packet sent by us as describe by RFC in Architectural Constant
 ```
 
@@ -23,14 +23,14 @@ to installed("Note that this excludes changes in LS Sequence Number and LS Check
 
 
 ## Impacts
- Upon sending the crafted packet, we were able create the network instability in chosen topology(fig.2). We confirmed by ping the router from n6 to n3 router, where ping packet was dropped during the attack.
+ Upon sending the crafted packet, we were able create the network instability in chosen topology(fig). We confirmed by ping the router from n6 to n3 router, where ping packet was dropped during the attack.
 
 
 
 ![topology](seq.png)
 
 
-## Work references 
+## Work references
 • https://youtu.be/f-k8HmYSQNA
 
 ##  To Run

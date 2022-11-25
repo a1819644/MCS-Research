@@ -1,7 +1,7 @@
 ## writter by Anoop Kumar Kushwaha
 
 
-## Seq++ attack
+## Maxage attack
 According to RFC in the section "Architectural Constants", the maximum age that an LSA can be attain is 3600 seconds[5]. And, When the router’s LSA instances reach its maximum age, the router re-flooded its’ LSA to flush the LSA of it from its neighbour and itself from the routing domain[5, 6]. An attack takes the advantage of this design fault, by setting the LS age to max age of an LSA. This will cause the LSA to be flushed by all the routers. The victim router will fight back by issuing a new LSA with the age of 0 and higher sequence number > attacker LSA sequence number[6]. An attacker in this attack, aims to unnecessary flooding and refreshing of the Link State Database, hence making the routing information inconsistent[10]. Further- more, the routers who don’t have a copy of the victim router’s LSA in their Link State Databases will not contribute to the flushing of it[10].
 
 ## Assumptions

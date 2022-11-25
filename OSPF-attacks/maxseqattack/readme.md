@@ -1,7 +1,7 @@
 ## writter by Anoop Kumar Kushwaha
 
 
-## Seq++ attack
+## Maxseq attack
 According to RFC in section 12.1.6, when the LSA of the router reaches its maximum (0x7FFFFFFF), the current in- stance of the LSA must be flush by setting the LSA age to max (3600) before initiating the new LSA[5]. An attacker ex- ploits this vulnerability by modifying the LSA sequence to its maximum (0x7FFFFFFF) and link state metric. As a result of this victim router should first purge the current installed LSA instance and then flood a new LSA carrying the correct link status information and smallest sequence 0*8000001 to get the acceptance of its LSA from their neighbour (section 12.1.6 in RFC)[5]
 
 ## Assumptions
