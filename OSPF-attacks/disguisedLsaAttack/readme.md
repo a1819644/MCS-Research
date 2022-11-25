@@ -28,7 +28,7 @@ We observed that neigh- bours of victim routers except the n6 and n8 routers(sho
 
 
 
-![topology2](distopo1.png)
+![topology1](distopo1.png)
 ![topology2](distopo2.png)
 
 
