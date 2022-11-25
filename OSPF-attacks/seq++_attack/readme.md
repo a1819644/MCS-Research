@@ -2,7 +2,7 @@ writter by Anoop Kumar Kushwaha
 
 
 
-##Seq++ attack
+## Seq++ attack
 According to RFC in section-13.1, the LSA flooded by the router to its neighbour is considered to be more recent by its neighbours if the LS sequence number, 
 LS checksum is greater than the install current(currently installed in router’s database)[5] and according to RFC in section 13.2, installa- tion of LSA occurs only if the new LSA content compare to 
 to installed("Note that this excludes changes in LS Sequence Number and LS Checksum") ones [5]. According to Wang et.al., an attacker can take an advantage of this vulnerability by increasing the LS sequence number by 1 and changing any, one of the LSA content such as LSA type(between 1 to 5) or link state metric and re-flood the malformed LSA on the network on behalf of the victim router to create the tempo- rary instability in the network [6, 5]. As a result, other routers will install into their database and flood this updated infor- mation. Upon receiving malformed information, the victim router will originate the new LSA with the larger sequence number and flood the new correct to its neighbour[7].
@@ -30,6 +30,8 @@ to installed("Note that this excludes changes in LS Sequence Number and LS Check
 ![topology](seq.png)
 
 
+## Work references 
+• https://youtu.be/f-k8HmYSQNA
 
 ##  To Run
     sudo python3 seq++.py -v [victim ip] -n [attacker location] -i [interface]
