@@ -20,7 +20,7 @@
 
 
 
-![topology](seq.png)
+![topology](maxseq.png)
 
 
 ## Work references 
